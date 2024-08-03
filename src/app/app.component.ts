@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { BasicService } from './core/services/basic.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,13 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'SocialLog';
+  posts: any[] | undefined;
+
+  constructor(private basicService: BasicService) {}
+
+  ngOnInit() {
+    this.basicService.getPosts().subscribe((data: any[]) => {
+      console.log(data);
+    });
+  }
 }
